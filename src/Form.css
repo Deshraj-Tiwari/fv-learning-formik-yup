@@ -1,0 +1,10 @@
+.container {
+  width: 30vw;
+}
+input,
+button {
+  border: 1px solid black !important;
+}
+h1 {
+  font-family: Ubuntu;
+}
