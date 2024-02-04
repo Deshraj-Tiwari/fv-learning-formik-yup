@@ -1,12 +1,27 @@
 import React from "react";
 import "./Form.css";
+import { useFormik } from "formik";
 
 export default function Form() {
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+
+  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: initialValues,
+    onSubmit: (values) => {
+      console.log("🚀 ~ Form ~ values:", values);
+    },
+  });
+
   return (
     <div className="container">
       <h1>REGISTRATION FORM</h1>
       <br />
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Name</label>
           <input
@@ -14,6 +29,9 @@ export default function Form() {
             className="form-control"
             name="name"
             autoComplete="off"
+            value={values.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <br />
 
@@ -25,6 +43,9 @@ export default function Form() {
             className="form-control"
             name="email"
             autoComplete="off"
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <br />
 
@@ -36,6 +57,9 @@ export default function Form() {
             className="form-control"
             name="password"
             autoComplete="off"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <br />
 
@@ -45,6 +69,9 @@ export default function Form() {
             className="form-control"
             name="confirmPassword"
             autoComplete="off"
+            value={values.confirmPassword}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <br />
         </div>
