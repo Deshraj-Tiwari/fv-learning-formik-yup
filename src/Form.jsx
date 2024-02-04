@@ -1,6 +1,7 @@
 import React from "react";
 import "./Form.css";
 import { useFormik } from "formik";
+import { signupSchema } from "./schemas";
 
 export default function Form() {
   const initialValues = {
@@ -12,6 +13,7 @@ export default function Form() {
 
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
+    validationSchema: signupSchema,
     onSubmit: (values) => {
       console.log("🚀 ~ Form ~ values:", values);
     },
@@ -33,34 +35,35 @@ export default function Form() {
             onChange={handleChange}
             onBlur={handleBlur}
           />
+          <p className="invalid-feedback">{errors.name}</p>
           <br />
 
-          <label className="form-label" placeholder="someone123@example.com">
-            Email address
-          </label>
+          <label className="form-label">Email address</label>
           <input
             type="email"
             className="form-control"
             name="email"
             autoComplete="off"
+            placeholder="someone123@example.com"
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
           />
+          <p className="invalid-feedback">{errors.email}</p>
           <br />
 
-          <label className="form-label" placeholder="At least 6 characters">
-            Password
-          </label>
+          <label className="form-label">Password</label>
           <input
             type="password"
             className="form-control"
             name="password"
             autoComplete="off"
+            placeholder="At least 6 characters"
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
           />
+          <p className="invalid-feedback">{errors.password}</p>
           <br />
 
           <label className="form-label">Confirm Password</label>
@@ -73,7 +76,7 @@ export default function Form() {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          <br />
+          {<p className="invalid-feedback">{errors.confirmPassword}</p>}
         </div>
         <button type="submit" className="btn btn-primary">
           Submit
